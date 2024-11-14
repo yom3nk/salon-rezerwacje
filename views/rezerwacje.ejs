@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie rezerwacje</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Wszystkie rezerwacje</h1>
+
+    <% if (rezerwacje.length > 0) { %>
+        <table>
+            <tr>
+                <th>Imię</th>
+                <th>Telefon</th>
+                <th>Data</th>
+                <th>Godzina</th>
+            </tr>
+            <% rezerwacje.forEach(rezerwacja => { %>
+                <tr>
+                    <td><%= rezerwacja.imie %></td>
+                    <td><%= rezerwacja.telefon %></td>
+                    <td><%= rezerwacja.data %></td>
+                    <td><%= rezerwacja.godzina %></td>
+                </tr>
+            <% }) %>
+        </table>
+    <% } else { %>
+        <p class="no-reservations">Brak dostępnych rezerwacji</p>
+    <% } %>
+
+    <a href="/" class="back-button">Powrót do formularza rezerwacji</a>
+</body>
+</html>

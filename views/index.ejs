@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja wizyty</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Rezerwacja wizyty w salonie fryzjerskim</h1>
+
+    <% if (message.error) { %>
+        <p class="error-message"><%= message.error %></p>
+    <% } %>
+
+    <form action="/rezerwuj" method="POST">
+        <label for="imie">Imię:</label>
+        <input type="text" name="imie" required>
+
+        <label for="telefon">Telefon:</label>
+        <input type="text" name="telefon" maxlength="9" required pattern="[0-9]{9}" title="Wprowadź numer telefonu składający się z 9 cyfr">        
+
+        <label for="data">Data:</label>
+        <div id="calendar"></div>
+        <input type="hidden" name="data" id="selected-date" required>
+
+        <label for="godzina">Godzina:</label>
+        <select name="godzina" required>
+            <option value="">Wybierz godzinę</option>'
+            <% availableTimes.forEach(time => { %>
+                <option value="<%= time %>"><%= time %></option>
+            <% }) %>
+        </select>
+
+        <button type="submit">Zarezerwuj</button>
+    </form>
+
+    <a href="/rezerwacje">Zobacz wszystkie rezerwacje</a>
+
+    <script src="/calendar.js"></script>
+</body>
+</html>
+
